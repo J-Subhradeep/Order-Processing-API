@@ -1,4 +1,4 @@
-package com.order.api.configs
+package com.order.processor.api.configs
 
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
