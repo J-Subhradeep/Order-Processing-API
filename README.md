@@ -10,7 +10,6 @@ Kafka is used as the messaging middleware with **random partition selection** fo
 
 ---
 
-## 🔁 Flow Diagram
 
 
 # Postman Documentation
