@@ -24,8 +24,9 @@ class OrderProcessorService(private val objectMapper: ObjectMapper, private val 
         val receivedOrder: ReceivedOrder = ReceivedOrder(UUID.randomUUID().toString(), o.product, o.quantity, o.customerId, "RECEIVED")
         if (orders.get(o.customerId)==null) {
 
-
-            orders.put(o.customerId, ArrayList<ReceivedOrder>())
+            val arrayList = ArrayList<ReceivedOrder>()
+            arrayList.add(receivedOrder)
+            orders.put(o.customerId, arrayList)
 
         }
         else{
@@ -41,7 +42,7 @@ class OrderProcessorService(private val objectMapper: ObjectMapper, private val 
         return orders.values.flatten();
     }
 
-    fun getOrderByCustomerID(customerId: String): List<ReceivedOrder> {
-        return orders.get(customerId).orEmpty()
+    fun getOrderByCustomerID(customerId: String): ArrayList<ReceivedOrder>? {
+        return orders.get(customerId)
     }
 }
