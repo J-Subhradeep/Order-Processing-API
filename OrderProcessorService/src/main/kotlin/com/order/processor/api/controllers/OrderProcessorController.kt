@@ -1,6 +1,7 @@
 package com.order.processor.api.controllers
 
 import com.order.processor.api.dtos.Order
+import com.order.processor.api.dtos.ReceivedOrder
 import com.order.processor.api.services.OrderProcessorService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,12 +14,12 @@ import java.util.stream.Collectors
 class OrderProcessorController(private val orderProcessorService: OrderProcessorService) {
 
     @GetMapping("/orders")
-    fun getAllOrders(): ResponseEntity<ArrayList<Order>>{
+    fun getAllOrders(): ResponseEntity<List<ReceivedOrder>>{
         return ResponseEntity(orderProcessorService.orders(), HttpStatus.OK)
     }
 
     @GetMapping("/orders", params = ["customerId"])
-    fun getOrdersByCustomerId(@RequestParam customerId:String): ResponseEntity<List<Order>>{
-        return ResponseEntity(orderProcessorService.orders().stream().filter { order-> order.customerId == customerId }.toList(), HttpStatus.OK)
+    fun getOrdersByCustomerId(@RequestParam customerId:String): ResponseEntity<List<ReceivedOrder>>{
+        return ResponseEntity(orderProcessorService.getOrderByCustomerID(customerId), HttpStatus.OK)
     }
 }
